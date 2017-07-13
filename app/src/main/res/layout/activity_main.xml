@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.user.singup.MainActivity">
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="426dp"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/etFullName"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="你的全名"
+                android:inputType="textPersonName" />
+
+            <requestFocus />
+
+            <EditText
+                android:id="@+id/etUserName"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:ems="10"
+                android:hint="帳號" />
+
+            <EditText
+                android:id="@+id/etPassword"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:ems="10"
+                android:hint="密碼"
+                android:inputType="textPassword" />
+
+            <EditText
+                android:id="@+id/etPhone"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="22dp"
+                android:ems="10"
+                android:hint="手機號碼"
+                android:inputType="phone" />
+
+            <EditText
+                android:id="@+id/etEmail"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:ems="10"
+                android:hint="信箱"
+                android:inputType="textEmailAddress" />
+
+            <Button
+                android:id="@+id/btnSignup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="signup"
+                android:text="註冊" />
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="radom"
+                android:text="產生" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</android.support.constraint.ConstraintLayout>
