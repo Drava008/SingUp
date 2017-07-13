@@ -33,6 +33,7 @@ public class SignupActivity extends AsyncTask<String, Void, String> {
         String passWord = arg0[2];
         String phoneNumber = arg0[3];
         String emailAddress = arg0[4];
+        String regid = arg0[5];
 
         String link;
         String data;
@@ -45,7 +46,7 @@ public class SignupActivity extends AsyncTask<String, Void, String> {
             data += "&password=" + URLEncoder.encode(passWord, "UTF-8");
             data += "&phonenumber=" + URLEncoder.encode(phoneNumber, "UTF-8");
             data += "&emailaddress=" + URLEncoder.encode(emailAddress, "UTF-8");
-
+            data += "&regid=" + URLEncoder.encode(regid, "UTF-8");
             link = "http://140.130.33.104/hello.php" + data;
             URL url = new URL(link);
             HttpURLConnection con = (HttpURLConnection) url.openConnection();

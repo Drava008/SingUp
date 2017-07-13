@@ -13,6 +13,7 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     private EditText etFullName, etUserName, etPassword, etPhone, etEmail;
+    String str;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,9 +33,10 @@ public class MainActivity extends AppCompatActivity {
         String passWord = etPassword.getText().toString();
         String phoneNumber = etPhone.getText().toString();
         String emailAddress = etEmail.getText().toString();
+        String regid = str;
 
         Toast.makeText(this, "Signing up...", Toast.LENGTH_SHORT).show();
-        new SignupActivity(this).execute(fullName, userName, passWord, phoneNumber, emailAddress);
+        new SignupActivity(this).execute(fullName, userName, passWord, phoneNumber, emailAddress, regid);
     }
 
     @Override
@@ -68,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
             randStr[i] = arr[(int)Math.round(Math.random() * (arr.length - 1))];
         }
 
-        String str = new String(randStr);
+        str = new String(randStr);
         AlertDialog.Builder MyAlertDialog = new AlertDialog.Builder(this);
         MyAlertDialog.setTitle("RadomText");
         MyAlertDialog.setMessage(str);
