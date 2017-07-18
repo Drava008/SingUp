@@ -1,5 +1,6 @@
 package com.example.user.singup;
 
+import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void signup(View v) {
+        radom();
         String fullName = etFullName.getText().toString();
         String userName = etUserName.getText().toString();
         String passWord = etPassword.getText().toString();
@@ -35,8 +37,12 @@ public class MainActivity extends AppCompatActivity {
         String emailAddress = etEmail.getText().toString();
         String regid = str;
 
-        Toast.makeText(this, "Signing up...", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "正在註冊中...", Toast.LENGTH_SHORT).show();
         new SignupActivity(this).execute(fullName, userName, passWord, phoneNumber, emailAddress, regid);
+    }
+
+    public void login(View v){
+        this.finish();
     }
 
     @Override
@@ -61,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void radom(View v){
+    public void radom(){
         char arr[] = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F','G','H','I','J','K','L','M','N','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'};
         int strlenth = 150;
         char randStr[] = new char[strlenth];
@@ -71,9 +77,9 @@ public class MainActivity extends AppCompatActivity {
         }
 
         str = new String(randStr);
-        AlertDialog.Builder MyAlertDialog = new AlertDialog.Builder(this);
+        /*AlertDialog.Builder MyAlertDialog = new AlertDialog.Builder(this);
         MyAlertDialog.setTitle("RadomText");
         MyAlertDialog.setMessage(str);
-        MyAlertDialog.show();
+        MyAlertDialog.show();*/
     }
 }
