@@ -1,5 +1,6 @@
 package com.example.user.singup;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Looper;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -30,7 +32,11 @@ import java.util.List;
 
 public class QueryActivity extends AppCompatActivity {
 
+    Button del;
+
     ArrayList<String> StringArray = new ArrayList<String>();
+
+    public String msg_id,phone;
 
     ListView listView;
     @Override
@@ -38,22 +44,44 @@ public class QueryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_query);
 
+        Intent intent = getIntent();
+        Bundle bag = intent.getExtras();
+        phone = bag.getString("phone");
+
         listView = (ListView)findViewById(R.id.listview);
 
-        new TheTask().execute("123456789");
+
+        new TheTask().execute(phone);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView arg0, View arg1, int arg2,
                                     long arg3) {
+
                 ListView listView = (ListView) arg0;
 
                 String del = StringArray.get(arg2);
-                Log.d("arg2=",del);
-
                 new TheDelete().execute(del);
             }
         });
+
+    }
+
+    public void logout(View v){
+        Intent intent = new Intent(QueryActivity.this, LoginActivity.class);
+        startActivity(intent);
+
+    }
+
+    public void deleteAll(View v){
+        for (int d = 0;d < StringArray.size();d++){
+
+            String del = StringArray.get(d);
+
+            new TheDelete().execute(del);
+            Log.d("del=",del);
+
+        }
 
     }
 
@@ -84,8 +112,6 @@ public class QueryActivity extends AppCompatActivity {
 
                 bufferedReader = new BufferedReader(new InputStreamReader(con.getInputStream()));
                 result = bufferedReader.readLine();
-                Log.d("result=",result);
-
 
                 return result;
             } catch (Exception e) {
@@ -102,8 +128,7 @@ public class QueryActivity extends AppCompatActivity {
 
             String jsonStr = result;
 
-            Log.d("result=",result);
-
+            StringArray.clear();
 
             if (jsonStr != null) try {
 
@@ -116,7 +141,7 @@ public class QueryActivity extends AppCompatActivity {
 
                         String msg = jsonObject.getString("msg").toString();
                         String time = jsonObject.getString("created_data").toString();
-                        String msg_id = jsonObject.getString("msg_id").toString();
+                        msg_id = jsonObject.getString("msg_id").toString();
 
                         HashMap<String , String> hashMap = new HashMap<>();
 
@@ -141,11 +166,7 @@ public class QueryActivity extends AppCompatActivity {
                 listView.setAdapter(listAdapter);
 
             } catch (JSONException e) {
-
                 e.printStackTrace();
-
-                Toast.makeText(QueryActivity.this, "Error parsing JSON data.", Toast.LENGTH_SHORT).show();
-
             }
             else {
 
@@ -178,7 +199,6 @@ public class QueryActivity extends AppCompatActivity {
 
                 bufferedReader = new BufferedReader(new InputStreamReader(con.getInputStream()));
                 result = bufferedReader.readLine();
-                Log.d("result=",result);
 
                 return result;
             } catch (Exception e) {
@@ -194,8 +214,7 @@ public class QueryActivity extends AppCompatActivity {
                     JSONObject jsonObj = new JSONObject(jsonStr);
                     String query_result = jsonObj.getString("query_result");
                     if (query_result.equals("SUCCESS")) {
-                        Toast.makeText(QueryActivity.this, "資料刪除成功", Toast.LENGTH_SHORT).show();
-                        new TheTask().execute("123456789");
+                        new TheTask().execute(phone);
                     } else if (query_result.equals("FAILURE")) {
                         Toast.makeText(QueryActivity.this, "資料刪除失敗", Toast.LENGTH_SHORT).show();
                     } else {
@@ -203,7 +222,6 @@ public class QueryActivity extends AppCompatActivity {
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
-                    Toast.makeText(QueryActivity.this, "Error parsing JSON data.", Toast.LENGTH_SHORT).show();
                 }
             } else {
                 Toast.makeText(QueryActivity.this, "Couldn't get any JSON data.", Toast.LENGTH_SHORT).show();

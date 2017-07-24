@@ -1,6 +1,7 @@
 package com.example.user.singup;
 
         import android.content.Context;
+        import android.content.Intent;
         import android.os.AsyncTask;
         import android.util.Log;
         import android.widget.Toast;
@@ -68,6 +69,8 @@ public class SignupActivity extends AsyncTask<String, Void, String> {
                 String query_result = jsonObj.getString("query_result");
                 if (query_result.equals("SUCCESS")) {
                     Toast.makeText(context, "會員資料建立成功", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(context, LoginActivity.class);
+                    context.startActivity(intent);
                 } else if (query_result.equals("FAILURE")) {
                     Toast.makeText(context, "會員資料建立失敗", Toast.LENGTH_SHORT).show();
                 } else if (query_result.equals("REWITE")) {

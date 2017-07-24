@@ -35,21 +35,52 @@
                 android:hint="密碼"
                 android:inputType="textPassword" />
 
-            <Button
-                android:id="@+id/btnSignup"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="login"
-                android:text="登入" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/button2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="singup"
-                android:text="註冊"
-                tools:layout_editor_absoluteX="-6dp"
-                tools:layout_editor_absoluteY="185dp" />
+                <CheckBox
+                    android:id="@+id/checkBox1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="記憶手機" />
+
+                <CheckBox
+                    android:id="@+id/checkBox2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="記憶密碼" />
+
+            </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/button2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:onClick="singup"
+                        android:text="註冊"
+                        tools:layout_editor_absoluteX="-6dp"
+                        tools:layout_editor_absoluteY="185dp" />
+
+                    <Button
+                        android:id="@+id/btnSignup"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:onClick="login"
+                        android:text="登入" />
+                </LinearLayout>
+
+
 
         </LinearLayout>
 
